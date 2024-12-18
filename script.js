@@ -58,6 +58,23 @@ async function generateTitle() {
     }
 }
 
+function savelocalStorage(){
+    localStorage.setItem("blogs", JSON.stringify(blogs));
+}
+
+function loadlocalStorage() {
+    const storedBlg = localStorage.getItem("blogs");
+    if (storedBlg){
+        blogs.length = 0;
+        blogs.push(...JSON.parse(storedBlg));
+        showBlogs();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadlocalStorage();
+});
+
 const blogs = [];
 
 function saveBlog() {
@@ -78,6 +95,8 @@ function saveBlog() {
         content: blogContent
     }
     blogs.push(newblog);
+
+    savelocalStorage();
 
     document.getElementById("blogContent").value = "";
     document.getElementById("generatedTitle").selectedIdx = 0;
@@ -102,6 +121,8 @@ function showBlogs() {
 
 function deleteBlog(idx){
     blogs.splice(idx, 1);
+
+    savelocalStorage();
     showBlogs();
 
     alert("Blog deleted");
