@@ -1,15 +1,18 @@
+function navbarToggle() {
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('active');
+}
+
 const apiKey = 'z4XZ6gQldbvXfKXITMji9QGO54QU1GAzMLWQRAK5'; 
 const apiUrl = 'https://api.cohere.ai/v1/generate'; 
 
 async function generateTitle() {
     const blogContent = document.getElementById("blogContent").value;
 
-    
     if (!blogContent.trim()) {
         alert("Please enter some blog content to generate a title.");
         return;
     }
-
    
     const requestData = {
         model: "command", 
@@ -19,8 +22,7 @@ async function generateTitle() {
         num_generations: 3 
     };
 
-    try {
-        
+    try {        
         const response = await fetch(apiUrl, {
             method: "POST",
             headers: {
@@ -29,15 +31,13 @@ async function generateTitle() {
             },
             body: JSON.stringify(requestData)
         });
-
         
         const data = await response.json();
 
         const dropdown = document.getElementById("generatedTitle");
-        dropdown.innerHTML = `<option value="" disabled selected>Select a title...</option>`;
+        dropdown.innerHTML = `<option value="" disabled selected>Select a title..</option>`;
 
-        if (data.generations && data.generations.length > 0) {
-            
+        if (data.generations && data.generations.length > 0) {       
             data.generations.forEach((gen, index) => {
                 const generatedTitle = gen.text.trim();
                 const optionElement = document.createElement("option");
@@ -53,8 +53,7 @@ async function generateTitle() {
         }
     } catch (error) {
         console.error("Error:", error);
-
         const dropdown = document.getElementById("generatedTitle");
-        dropdown.innerHTML = `<option value="" disabled selected>An error occurred. Please try again.</option>`;
+        dropdown.innerHTML = `<option value="" disabled selected>Error, Please try again.</option>`;
     }
 }
