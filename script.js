@@ -10,7 +10,7 @@ async function generateTitle() {
     const blogContent = document.getElementById("blogContent").value;
 
     if (!blogContent.trim()) {
-        alert("Please enter some blog content to generate a title.");
+        alert("Please enter blog content to generate a title.");
         return;
     }
    
@@ -38,11 +38,11 @@ async function generateTitle() {
         dropdown.innerHTML = `<option value="" disabled selected>Select a title..</option>`;
 
         if (data.generations && data.generations.length > 0) {       
-            data.generations.forEach((gen, index) => {
+            data.generations.forEach((gen, idx) => {
                 const generatedTitle = gen.text.trim();
                 const optionElement = document.createElement("option");
                 optionElement.value = generatedTitle;
-                optionElement.textContent = `${index + 1}. ${generatedTitle}`;
+                optionElement.textContent = `${idx + 1}. ${generatedTitle}`;
                 dropdown.appendChild(optionElement);
             });
         } else {
@@ -56,4 +56,53 @@ async function generateTitle() {
         const dropdown = document.getElementById("generatedTitle");
         dropdown.innerHTML = `<option value="" disabled selected>Error, Please try again.</option>`;
     }
+}
+
+const blogs = [];
+
+function saveBlog() {
+    const selectedTitle = document.getElementById("generatedTitle").value;
+    const blogContent = document.getElementById("blogContent").value;
+    if (!selectedTitle){
+        alert("please select a title");
+        return;
+    }
+
+    if (!blogContent){
+        alert("please enter blog content");
+        return;
+    }
+
+    const newblog = {
+        title: selectedTitle,
+        content: blogContent
+    }
+    blogs.push(newblog);
+
+    document.getElementById("blogContent").value = "";
+    document.getElementById("generatedTitle").selectedIdx = 0;
+
+    showBlogs();
+    alert("your blog has been saved");
+}
+
+function showBlogs() {
+    const blogContainer = document.getElementById("savedBlogs");
+    blogContainer.innerHTML = "";
+
+    blogs.forEach((blog, idx) => {
+        const blogcard = document.createElement("div");
+        blogcard.className = "blog-card";
+        blogcard.innerHML = `<h4>${blog.title}</h4>
+        <p>${blog.content.slice(0, 50)}..</p>`;
+
+        blogContainer.appendChild(blogcard);
+    });
+}
+
+function deleteBlog(idx){
+    blogs.splice(idx, 1);
+    showBlogs();
+
+    alert("Blog deleted");
 }

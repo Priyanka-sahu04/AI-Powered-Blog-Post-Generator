@@ -85,3 +85,35 @@ h3 {
         display: block;
     }
 }
+
+#savedBlogs {
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.blog-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+    width: 20rem;
+    height: 6rem;
+}
+
+.blog-card h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.blog-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0 0;
+}
+
+.blog-item button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+}
