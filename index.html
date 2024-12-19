@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +15,7 @@
             <li><a href="#createblog">Create Blog</a></li>
             <li><a href="#savedblogs">Saved Blogs</a></li>
         </ul>
-        <div class="toggle" onclick="navbarToggle()">☰</div>
+        <div class="toggle" onclick="toggleNavbar()">☰</div>
     </nav>
 
     <div class="container" id="createblog">
@@ -26,13 +25,13 @@
             <option value="" disabled selected>Your titles will show here...</option>
         </select><br>
 
-        <textarea id="blogContent" rows="5" placeholder="Enter your blog here..."></textarea><br>
+        <textarea id="blogContent" rows="5" placeholder="Enter your content here..."></textarea><br>
         <button onclick="generateTitle()">Generate Title</button>
 
         <button onclick="saveBlog()">Save Blog</button>
     </div>
     
-    <h3 id="savedblogs">Your Blogs:</h3>
+    <h3 id="savedblogs">Saved Blog:</h3>
     <div id="savedBlogs"></div>
 
     <script src="script.js"></script>

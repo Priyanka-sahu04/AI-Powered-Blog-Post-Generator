@@ -1,4 +1,4 @@
-function navbarToggle() {
+function toggleNavbar() {
     const navbar = document.querySelector('.navbar');
     navbar.classList.toggle('active');
 }
@@ -10,19 +10,19 @@ async function generateTitle() {
     const blogContent = document.getElementById("blogContent").value;
 
     if (!blogContent.trim()) {
-        alert("Please enter blog content to generate a title.");
+        alert("Please enter blog content.");
         return;
     }
-   
+
     const requestData = {
         model: "command", 
-        prompt: `provide title for following blog without any extra massages:\n\n${blogContent}`,
+        prompt: `don't give extra massages, generate only title:\n\n${blogContent}`,
         max_tokens: 10,
         temperature: 0.7,
         num_generations: 3 
     };
 
-    try {        
+    try {
         const response = await fetch(apiUrl, {
             method: "POST",
             headers: {
@@ -31,18 +31,18 @@ async function generateTitle() {
             },
             body: JSON.stringify(requestData)
         });
-        
+
         const data = await response.json();
 
         const dropdown = document.getElementById("generatedTitle");
-        dropdown.innerHTML = `<option value="" disabled selected>Select a title..</option>`;
+        dropdown.innerHTML = `<option value="" disabled selected>Select a title...</option>`;
 
-        if (data.generations && data.generations.length > 0) {       
-            data.generations.forEach((gen, idx) => {
+        if (data.generations && data.generations.length > 0) {
+            data.generations.forEach((gen, index) => {
                 const generatedTitle = gen.text.trim();
                 const optionElement = document.createElement("option");
                 optionElement.value = generatedTitle;
-                optionElement.textContent = `${idx + 1}. ${generatedTitle}`;
+                optionElement.textContent = `${index + 1}. ${generatedTitle}`;
                 dropdown.appendChild(optionElement);
             });
         } else {
@@ -54,25 +54,25 @@ async function generateTitle() {
     } catch (error) {
         console.error("Error:", error);
         const dropdown = document.getElementById("generatedTitle");
-        dropdown.innerHTML = `<option value="" disabled selected>Error, Please try again.</option>`;
+        dropdown.innerHTML = `<option value="" disabled selected>An error occurred. Please try again.</option>`;
     }
 }
 
-function savelocalStorage(){
-    localStorage.setItem("blogs", JSON.stringify(blogs));
+function saveLocalStorage() {
+    localStorage.setItem("blogs", JSON.stringify(blogs)); 
 }
 
-function loadlocalStorage() {
-    const storedBlg = localStorage.getItem("blogs");
-    if (storedBlg){
-        blogs.length = 0;
-        blogs.push(...JSON.parse(storedBlg));
-        showBlogs();
+function loadLocalStorage() {
+    const storedBlogs = localStorage.getItem("blogs");
+    if (storedBlogs) {
+        blogs.length = 0; 
+        blogs.push(...JSON.parse(storedBlogs)); 
+        showBlogs(); 
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadlocalStorage();
+    loadLocalStorage(); 
 });
 
 const blogs = [];
@@ -80,107 +80,115 @@ const blogs = [];
 function saveBlog() {
     const selectedTitle = document.getElementById("generatedTitle").value;
     const blogContent = document.getElementById("blogContent").value;
-    if (!selectedTitle){
-        alert("please select a title");
+    if (!selectedTitle) {
+        alert("Please select title");
         return;
     }
 
-    if (!blogContent){
-        alert("please enter blog content");
+    if (!blogContent.trim()) {
+        alert("Please enter blog content.");
         return;
     }
 
-    const newblog = {
+    const newBlog = {
         title: selectedTitle,
         content: blogContent
-    }
-    blogs.push(newblog);
+    };
+    blogs.push(newBlog);
 
-    savelocalStorage();
+    saveLocalStorage();
 
     document.getElementById("blogContent").value = "";
-    document.getElementById("generatedTitle").selectedIdx = 0;
+    document.getElementById("generatedTitle").selectedIndex = 0;
 
     showBlogs();
-    alert("your blog has been saved");
+    alert("Your blog has been saved");
 }
 
+
 function showBlogs() {
-    const blogContainer = document.getElementById("savedBlogs");
-    blogContainer.innerHTML = "";
+    const savedBlogsContainer = document.getElementById("savedBlogs");
+    savedBlogsContainer.innerHTML = ""; 
 
-    blogs.forEach((blog, idx) => {
-        const blogcard = document.createElement("div");
-        blogcard.className = "blog-card";
-        blogcard.innerHML = `<h4>${blog.title}</h4>
-        <p>${blog.content.slice(0, 50)}..</p>`;
+    blogs.forEach((blog, index) => {
+        const blogCard = document.createElement("div");
+        blogCard.className = "blog-card";
+        blogCard.innerHTML = `
+            <h4>${blog.title}</h4>
+            <p>${blog.content.slice(0, 50)}...</p>
+        `;
 
-        blogContainer.appendChild(blogcard);
+        blogCard.onclick = function () {
+            showFullBlog(blog, index);
+        };
+
+        savedBlogsContainer.appendChild(blogCard);
     });
 }
 
-function deleteBlog(idx){
-    blogs.splice(idx, 1);
+function deleteBlog(index) {
+    blogs.splice(index, 1);
 
-    savelocalStorage();
+    saveLocalStorage();
     showBlogs();
 
-    alert("Blog deleted");
+    alert("Blog deleted successfully!");
 }
 
-function editBlog(idx) {
-    const blog = blogs[idx];
-
+function editBlog(index) {
+    const blog = blogs[index]; 
     document.getElementById("blogContent").value = blog.content;
-    const titledropdown = document.getElementById("generatedTitle");
-    let options = document.createElement("option");
-    options.value = blog.title;
-    options.textContent = blog.title;
-    options.selected = true;
-    titledropdown.appendChild(options);
 
-    const saveButton = document.querySelector("button[onclick='saveBlogs()']");
+    const titleDropdown = document.getElementById("generatedTitle");
+    let tempOption = document.createElement("option");
+    tempOption.value = blog.title;
+    tempOption.textContent = blog.title;
+    tempOption.selected = true;
+    titleDropdown.appendChild(tempOption);
+
+    const saveButton = document.querySelector("button[onclick='saveBlog()']");
     saveButton.textContent = "Update Blog";
     saveButton.onclick = function () {
-        updateBlog(idx);
+        updateBlog(index); 
     };
 }
 
-function updateBlog(idx) {
+
+function updateBlog(index) {
     const updatedTitle = document.getElementById("generatedTitle").value;
     const updatedContent = document.getElementById("blogContent").value;
 
     if (!updatedTitle) {
-        alert("Please select title");
+        alert("Please select a title.");
         return;
     }
     if (!updatedContent.trim()) {
-        alert("Please write your blog");
+        alert("Please enter blog content.");
         return;
     }
 
-    blogs[idx] = {
+    blogs[index] = {
         title: updatedTitle,
         content: updatedContent
-    }
+    };
 
-    savelocalStorage();
+    saveLocalStorage();
 
     document.getElementById("blogContent").value = "";
-    document.getElementById("generatedTitle").selectedIdx = 0;
+    document.getElementById("generatedTitle").selectedIndex = 0;
 
     showBlogs();
 
     const saveButton = document.querySelector("button[onclick='saveBlog()']");
-    saveButton.textContent = "save Blog";
-    saveButton.onclick = saveBlog;
+    saveButton.textContent = "Save Blog";
+    saveButton.onclick = saveBlog; 
 
-    alert("your blog updated");
+    alert("Blog updated successfully!");
 }
 
 function showFullBlog(blog, index) {
-    const blogContainer = document.getElementById("savedBlogs");
-    blogContainer.innerHTML = `
+    const savedBlogsContainer = document.getElementById("savedBlogs");
+    savedBlogsContainer.innerHTML = `
         <div class="blog-item">
             <h4>${blog.title}</h4>
             <p>${blog.content}</p>
