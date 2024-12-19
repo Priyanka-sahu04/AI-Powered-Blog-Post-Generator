@@ -80,6 +80,7 @@ const blogs = [];
 function saveBlog() {
     const selectedTitle = document.getElementById("generatedTitle").value;
     const blogContent = document.getElementById("blogContent").value;
+    const blogImage = document.getElementById("blogImage").value;
     if (!selectedTitle) {
         alert("Please select title");
         return;
@@ -90,9 +91,15 @@ function saveBlog() {
         return;
     }
 
+    if (!blogImage.trim()) {
+        alert("Please enter image URL.");
+        return;
+    }
+
     const newBlog = {
         title: selectedTitle,
-        content: blogContent
+        content: blogContent,
+        image: blogImage
     };
     blogs.push(newBlog);
 
@@ -100,6 +107,7 @@ function saveBlog() {
 
     document.getElementById("blogContent").value = "";
     document.getElementById("generatedTitle").selectedIndex = 0;
+    document.getElementById("blogImage").value = "";
 
     showBlogs();
     alert("Your blog has been saved");
@@ -114,6 +122,7 @@ function showBlogs() {
         const blogCard = document.createElement("div");
         blogCard.className = "blog-card";
         blogCard.innerHTML = `
+            <img src="${blog.image}" alt="Blog Image" class="blog-image" />
             <h4>${blog.title}</h4>
             <p>${blog.content.slice(0, 50)}...</p>
         `;
@@ -157,6 +166,7 @@ function editBlog(index) {
 function updateBlog(index) {
     const updatedTitle = document.getElementById("generatedTitle").value;
     const updatedContent = document.getElementById("blogContent").value;
+    const updatedImage = document.getElementById("blogImage").value;
 
     if (!updatedTitle) {
         alert("Please select a title.");
@@ -167,15 +177,22 @@ function updateBlog(index) {
         return;
     }
 
+    if (!updatedImage.trim()) {
+        alert("Please enter image URL.");
+        return;
+    }
+
     blogs[index] = {
         title: updatedTitle,
-        content: updatedContent
+        content: updatedContent,
+        image: updatedImage
     };
 
     saveLocalStorage();
 
     document.getElementById("blogContent").value = "";
     document.getElementById("generatedTitle").selectedIndex = 0;
+    document.getElementById("blogImage").value = "";
 
     showBlogs();
 
@@ -190,6 +207,7 @@ function showFullBlog(blog, index) {
     const savedBlogsContainer = document.getElementById("savedBlogs");
     savedBlogsContainer.innerHTML = `
         <div class="blog-item">
+            <img src="${blog.image}" alt="Blog Image" class="blog-full-image" />
             <h4>${blog.title}</h4>
             <p>${blog.content}</p>
             <button onclick="showBlogs()">Back to All Blogs</button>

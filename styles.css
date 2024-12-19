@@ -6,7 +6,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: beige;
+    background-image: url('https://img.freepik.com/free-vector/geometric-background-vector-white-color_53876-136766.jpg?w=1380&t=st=1723270967~exp=1723271567~hmac=2b5be397ea4fb44132621e0e9138df5373e45a91c77d50b47665fb35e0b0c9a5');
 }
 
 .navbar {
@@ -75,9 +75,17 @@ body {
         display: block;
     }
 }
+
+#blogImage {
+    margin-top: 1rem;
+    width: 80%;
+    max-width: 500px;
+    height: 1.8rem;
+    border: 2px solid ;
+}
  
 textarea, button select {
-    margin: 10px 0;
+    margin: 1rem 0;
     padding: 10px;
     width: 80%;
     max-width: 500px;
@@ -123,8 +131,9 @@ h3 {
     padding: 10px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    width: 20rem;
-    height: 6rem;
+    width: 80%;
+    max-width: 20rem;
+    height: 18rem;
     cursor: pointer;
 }
 
@@ -164,4 +173,18 @@ h3 {
 }
 .blog-item button:nth-child(3):hover {
     background-color: #c82333;
+}
+
+.blog-image {
+    width: 100%;
+    height: 12rem;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.blog-full-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
