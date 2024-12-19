@@ -127,3 +127,66 @@ function deleteBlog(idx){
 
     alert("Blog deleted");
 }
+
+function editBlog(idx) {
+    const blog = blogs[idx];
+
+    document.getElementById("blogContent").value = blog.content;
+    const titledropdown = document.getElementById("generatedTitle");
+    let options = document.createElement("option");
+    options.value = blog.title;
+    options.textContent = blog.title;
+    options.selected = true;
+    titledropdown.appendChild(options);
+
+    const saveButton = document.querySelector("button[onclick='saveBlogs()']");
+    saveButton.textContent = "Update Blog";
+    saveButton.onclick = function () {
+        updateBlog(idx);
+    };
+}
+
+function updateBlog(idx) {
+    const updatedTitle = document.getElementById("generatedTitle").value;
+    const updatedContent = document.getElementById("blogContent").value;
+
+    if (!updatedTitle) {
+        alert("Please select title");
+        return;
+    }
+    if (!updatedContent.trim()) {
+        alert("Please write your blog");
+        return;
+    }
+
+    blogs[idx] = {
+        title: updatedTitle,
+        content: updatedContent
+    }
+
+    savelocalStorage();
+
+    document.getElementById("blogContent").value = "";
+    document.getElementById("generatedTitle").selectedIdx = 0;
+
+    showBlogs();
+
+    const saveButton = document.querySelector("button[onclick='saveBlog()']");
+    saveButton.textContent = "save Blog";
+    saveButton.onclick = saveBlog;
+
+    alert("your blog updated");
+}
+
+function showFullBlog(blog, index) {
+    const blogContainer = document.getElementById("savedBlogs");
+    blogContainer.innerHTML = `
+        <div class="blog-item">
+            <h4>${blog.title}</h4>
+            <p>${blog.content}</p>
+            <button onclick="showBlogs()">Back to All Blogs</button>
+            <button onclick="editBlog(${index})">Edit</button>
+            <button onclick="deleteBlog(${index})">Delete</button>
+        </div>
+    `;
+}
