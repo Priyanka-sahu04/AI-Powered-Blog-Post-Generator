@@ -16,8 +16,8 @@ async function generateTitle() {
 
     const requestData = {
         model: "command", 
-        prompt: `don't give extra massages, generate only title:\n\n${blogContent}`,
-        max_tokens: 10,
+        prompt: `content:\n\n${blogContent}`,
+        max_tokens: 15,
         temperature: 0.7,
         num_generations: 3 
     };
@@ -101,7 +101,7 @@ function saveBlog() {
         content: blogContent,
         image: blogImage
     };
-    blogs.push(newBlog);
+    blogs.unshift(newBlog);
 
     saveLocalStorage();
 
@@ -210,7 +210,7 @@ function showFullBlog(blog, index) {
             <img src="${blog.image}" alt="Blog Image" class="blog-full-image" />
             <h4>${blog.title}</h4>
             <p>${blog.content}</p>
-            <button onclick="showBlogs()">Back to All Blogs</button>
+            <button onclick="showBlogs()" class="back-button">Back to All</button></br>
             <button onclick="editBlog(${index})">Edit</button>
             <button onclick="deleteBlog(${index})">Delete</button>
         </div>

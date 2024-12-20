@@ -6,7 +6,12 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url('https://img.freepik.com/free-vector/geometric-background-vector-white-color_53876-136766.jpg?w=1380&t=st=1723270967~exp=1723271567~hmac=2b5be397ea4fb44132621e0e9138df5373e45a91c77d50b47665fb35e0b0c9a5');
+    /* background-image: radial-gradient(circle, #5c0067 0%, #00d4ff 100%); */
+    /* background-color: #4982c4; */
+    /* background-image: url('https://img.freepik.com/free-vector/geometric-background-vector-white-color_53876-136766.jpg?w=1380&t=st=1723270967~exp=1723271567~hmac=2b5be397ea4fb44132621e0e9138df5373e45a91c77d50b47665fb35e0b0c9a5'); */
+    background-color: #4158D0;
+    background-image: linear-gradient(90deg, #4158D0 0%, #C850C0 70%);
+
 }
 
 .navbar {
@@ -14,7 +19,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #333;
+    background-image: radial-gradient(circle, #5c0067 0%, #00d4ff 100%);
     color: white;
 }
 
@@ -81,7 +86,8 @@ body {
     width: 80%;
     max-width: 500px;
     height: 1.8rem;
-    border: 2px solid ;
+    border: 2px solid rgb(109, 100, 100);
+    border-radius: 7px;
 }
  
 textarea, button select {
@@ -89,15 +95,21 @@ textarea, button select {
     padding: 10px;
     width: 80%;
     max-width: 500px;
+    border: 2px solid rgb(109, 100, 100);
+    border-radius: 7px;
 }
 button {
-    background-color: #28a745;
+    background-color: #4893e7;
     color: white;
-    border: none;
+    border: 2px solid rgb(109, 100, 100);
+    border-radius: 15px;
     cursor: pointer;
+    font-size: 1rem;
+    padding: 7px 10px;
+    width: 8rem;
 }
 button:hover {
-    background-color: #218838;
+    background-color: #1f65b6;
 }
 h3 {
     color: #333; 
@@ -122,15 +134,16 @@ h3 {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .blog-card {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* background-image: url('https://img.freepik.com/free-vector/geometric-background-vector-white-color_53876-136766.jpg?w=1380&t=st=1723270967~exp=1723271567~hmac=2b5be397ea4fb44132621e0e9138df5373e45a91c77d50b47665fb35e0b0c9a5'); */
+    background-color: #ffffff77;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
     width: 80%;
     max-width: 20rem;
     height: 18rem;
@@ -138,7 +151,7 @@ h3 {
 }
 
 .blog-card:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
 }
 
 .blog-card h4 {
@@ -157,16 +170,17 @@ h3 {
 }
 
 .blog-item button {
-    background-color: #007bff;
+    background-color: #4893e7;
     color: white;
-    border: none;
-    padding: 5px 10px;
+    border: 2px solid rgb(109, 100, 100);
+    border-radius: 15px;
     cursor: pointer;
-    border-radius: 3px;
-    margin-right: 5px;
+    font-size: 1rem;
+    padding: 7px 10px;
+    width: 8rem;
 }
 .blog-item button:hover {
-    background-color: #0056b3;
+    background-color: #154883;;
 }
 .blog-item button:nth-child(3) {
     background-color: #dc3545;
@@ -184,7 +198,30 @@ h3 {
 
 .blog-full-image {
     width: 100%;
-    height: auto;
+    height: 25rem;
     border-radius: 5px;
     margin-bottom: 20px;
+}
+
+.blog-item {
+    width: 90%;
+    max-width: 750px;
+    background-color: #ffffffad;
+    padding: 15px;
+}
+
+.blog-item h4 {
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+.blog-item p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+}
+
+.back-button {
+    margin: 10px 0;
 }
