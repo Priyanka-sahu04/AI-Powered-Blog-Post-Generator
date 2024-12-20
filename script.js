@@ -17,7 +17,7 @@ async function generateTitle() {
     const requestData = {
         model: "command", 
         prompt: `content:\n\n${blogContent}`,
-        max_tokens: 15,
+        max_tokens: 10,
         temperature: 0.7,
         num_generations: 3 
     };
@@ -92,7 +92,7 @@ function saveBlog() {
     }
 
     if (!blogImage.trim()) {
-        alert("Please enter image URL.");
+        alert("Please enter your image address.");
         return;
     }
 
@@ -178,7 +178,7 @@ function updateBlog(index) {
     }
 
     if (!updatedImage.trim()) {
-        alert("Please enter image URL.");
+        alert("Please enter your image address.");
         return;
     }
 
