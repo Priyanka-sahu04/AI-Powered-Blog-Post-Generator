@@ -22,7 +22,7 @@ document.getElementById("signup-btn").addEventListener("click", () => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       alert("Sign-Up Successful!");
-      window.location.href = "mainPage.html";
+      window.location.href = "mainpage.html";
     })
     .catch((error) => {
       alert("Email is already in use");
@@ -37,7 +37,7 @@ document.getElementById("login-btn").addEventListener("click", () => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       alert("Login Successful!");
-      window.location.href = "mainPage.html";
+      window.location.href = "mainpage.html";
     })
     .catch((error) => {
       alert(error.message);
