@@ -1,22 +1,37 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: linear-gradient(90deg, #4158D0 0%, #C850C0 70%);
+}
 
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: -1; 
 }
 
 .navbar {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-image: radial-gradient(circle, #5c0067 0%, #00d4ff 100%);
     color: white;
+    z-index: 1;
 }
 
 .navbar .logo {
@@ -25,7 +40,7 @@ body {
 }
 
 .logo img {
-    width: 7rem;
+    width: 5rem;
 }
 
 .nav-links {
@@ -42,7 +57,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: white;
+    color: rgb(223, 216, 216);
     font-size: 16px;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -50,13 +65,97 @@ body {
 }
 
 .nav-links a:hover {
-    color: #151a15;
+    color: #646664;
+    text-decoration: underline;
 }
 
 .toggle {
     display: none;
     font-size: 24px;
-    color: white;
+    color: rgb(223, 216, 216);
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-top: 0 ;
+    padding-top: 10rem;
+    margin-bottom: 5rem;
+    color: rgb(223, 216, 216);
+}
+
+.hardcodedeBlog {
+    padding: 6rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    background-color: #e7dfdfc4;
+}
+
+.blogCards {
+    width: 300px;
+    height: 22.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.blogCards img {
+    width: 100%;
+    height: 10rem;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+}
+
+.blogCards h2 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.blogCards p {
+    font-size: 14px;
+    color: #555;
+    margin: 1rem 0;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    background: white;
+    padding: 25px;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.lightbox-content img {
+    width: 80%;
+    height: 20rem;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
     cursor: pointer;
 }
 
@@ -84,11 +183,15 @@ body {
 
 .container {
     padding-top: 8rem;
+    z-index: 1;
 }
 
 .container h1 {
     font-size: 2.5rem;
+    margin-top: 0 ;
+    padding-top: 5rem;
     margin-bottom: 5rem;
+    color: rgb(223, 216, 216);
 }
 
 #blogImage {
@@ -111,9 +214,9 @@ button select {
 }
 
 button {
-    background-color: #4893e7;
+    background-image: radial-gradient(circle, #33a0e9 5%, #2b50c9 100%);
     color: white;
-    border: 2px solid rgb(109, 100, 100);
+    border: 2px solid rgb(178, 177, 221);
     border-radius: 15px;
     cursor: pointer;
     font-size: 1rem;
@@ -122,7 +225,7 @@ button {
 }
 
 button:hover {
-    background-color: #1f65b6;
+    background-color: #219993;
 }
 
 h3 {
@@ -136,8 +239,14 @@ h3 {
     max-width: 500px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #fff;
+    background-color:rgb(231, 227, 227);
+    color:rgb(136, 132, 132);
     font-size: 16px;
+}
+
+input, textarea {
+    background-color:rgb(231, 227, 227);
+    color:rgb(136, 132, 132);
 }
 
 #savedBlogs {
@@ -149,6 +258,7 @@ h3 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    z-index: 1;
 }
 
 .blog-card {
@@ -184,9 +294,9 @@ h3 {
 }
 
 .blog-item button {
-    background-color: #4893e7;
+    background-image: radial-gradient(circle, #2f95da 5%, #2b50c9 100%);
     color: white;
-    border: 2px solid rgb(109, 100, 100);
+    border: 2px solid rgb(77, 76, 121);
     border-radius: 15px;
     cursor: pointer;
     font-size: 1rem;
@@ -195,7 +305,7 @@ h3 {
 }
 
 .blog-item button:hover {
-    background-color: #154883;
+    background-color: #219993;
 }
 
 .blog-image {
@@ -239,5 +349,5 @@ h3 {
     font-size: 2rem;
     padding-top: 7rem;
     margin-bottom: 3rem;
-    color: black;
+    color: rgb(223, 216, 216);
 }

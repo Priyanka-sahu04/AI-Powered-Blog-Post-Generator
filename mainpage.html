@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Blog Post Generator</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <video autoplay muted loop id="background-video">
+        <source src="aboutvid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav class="navbar">
+        <div class="logo"><img src="logo.png" alt=""></div>
+        <ul class="nav-links">
+            <li><a href="#first-container">Home</a></li>
+            <li><a href="#createblog">Create Blog</a></li>
+            <li><a href="#savedblogs">Saved Blogs</a></li>
+        </ul>
+        <div class="toggle" onclick="toggleNavbar()">☰</div>
+    </nav>
+
+    <h1 id="first-container">AI-Powered Blog Post Generator</h1>
+
+    <div class="hardcodedeBlog">
+        <div class="blogCards">
+            <img src="https://quaintnook.com/wp-content/uploads/2023/12/IMG_4447.jpeg" alt="">
+            <h4>The Joy of Gardening: A Step Towards a Greener Life</h4>
+            <p>Gardening is more than just a hobby; it’s a way to connect with...</p>
+            <button class="read-more" onclick="openLightbox(0)">Read More</button>
+        </div>
+
+        <div class="blogCards">
+            <img src="https://sukhis.com/app/uploads/2022/09/image3-5-900x601-1.jpg" alt="">
+            <h4>Absolutely! Here is a slightly longer version of the</h4>
+            <p>Most of the rich, buttery Indian dishes popular in the US...</p>
+            <button class="read-more" onclick="openLightbox(1)">Read More</button>
+        </div>
+
+        <div class="blogCards">
+            <img src="https://jasonlouro.ghost.io/content/images/2023/06/Seasons.webp" alt="">
+            <h4>April’s Awakening: Embracing Renewal and Blossoming Beauty</h4>
+            <p>As we pull on our raincoats yet again and wait for the warmth...</p>
+            <button class="read-more" onclick="openLightbox(2)">Read More</button>
+        </div>
+
+        <div class="blogCards">
+            <img src="https://www.tandfonline.com/cms/asset/2390eff2-ed75-43b3-8e01-11ac0c67530b/uced_a_2083384_uf0010_c.jpg" alt="">
+            <h4>That's a great mission statement! It sounds like</h4>
+            <p>We strive to connect students with a God who loves them no...</p>
+            <button class="read-more" onclick="openLightbox(3)">Read More</button>
+        </div>
+
+        <div class="blogCards">
+            <img src="https://www.harwoodhouse.co.uk/wordpress/wp-content/uploads/End-of-Life-Care-2000x1200-1.jpg" alt="">
+            <h4>Request for care</h4>
+            <p>We are passionate about connecting people with God through...</p>
+            <button class="read-more" onclick="openLightbox(4)">Read More</button>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="close-btn" onclick="closeLightbox()">&times;</span>
+            <h2 id="lightbox-title"></h2>
+            <img id="lightbox-img" src="" alt="Blog Image">
+            <p id="lightbox-content"></p>
+        </div>
+    </div>
+
+
+
+    <div class="container" id="createblog">
+        <h1>Creat Blog</h1>
+        <select id="generatedTitle" class="dropdown">
+            <option value="" disabled selected>Your titles will show here...</option>
+        </select><br>
+        <input type="text" id="blogImage" placeholder="  Enter image URL" /><br>
+        <textarea id="blogContent" rows="5" placeholder="Enter your content here..."></textarea><br>
+        <button onclick="generateTitle()">Generate Title</button>
+        <button onclick="saveBlog()">Save Blog</button>
+    </div>
+    
+    <h3 id="savedblogs">Saved Blog</h3>
+    <div id="savedBlogs"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
